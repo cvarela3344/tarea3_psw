@@ -9,7 +9,7 @@ Para cada uno de los siguientes módulos:
 - Niveles de fidelidad  
 - Menú CLI  
 
-Se documenta el ciclo **Red → Green → Refactor**, además de los resultados obtenidos en cobertura de pruebas y diagramas UML de apoyo.
+En este documento se muestra el ciclo Red, Green, Refactor, además de los resultados obtenidos en cobertura de pruebas y diagramas UML de apoyo.
 
 ---
 
