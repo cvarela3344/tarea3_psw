@@ -1,6 +1,6 @@
 # Test Driven Development Proof
 
-Este documento deja evidencia del proceso **TDD** utilizado para desarrollar la **Tarea 3** del curso, correspondiente a la implementación de un sistema de fidelidad gamificada.
+Este documento deja evidencia del proceso TDD utilizado para desarrollar la Tarea 3 del curso, correspondiente a la implementación de un sistema de fidelidad.
 
 Para cada uno de los siguientes módulos:
 
@@ -216,10 +216,10 @@ La interacción se implementó mediante un menú de texto simple por consola.
 
 ![](fotos/uncovered.png)
 
-He medido cobertura de código estructural utilizando JaCoCo y SonarQube, específicamente cobertura de líneas (line coverage) y condiciones booleanas (condition o branch coverage). SonarQube ha medido cuántas líneas fueron realmente ejecutadas por las pruebas y si las condiciones lógicas que estas tenian se evaluaron tanto como verdaderas o falsas. SonarQube presentó métricas como uncovered lines y uncovered conditions, lo que confirma este enfoque. La razón de medir estos tipos es asegurar que la lógica de negocio esté correctamente cubierta, detectar caminos no probados y garantizar un comportamiento robusto del sistema.
+He medido cobertura de código estructural utilizando JaCoCo (para entender la cobertura) y SonarQube, específicamente cobertura de líneas (line coverage) y condiciones booleanas (condition o branch coverage). SonarQube ha medido cuántas líneas fueron realmente ejecutadas por las pruebas y si las condiciones lógicas que estas tenian se evaluaron tanto como verdaderas o falsas. SonarQube presentó métricas como uncovered lines y uncovered conditions, lo que confirma este enfoque. La razón de medir estos tipos es asegurar que la lógica de negocio esté correctamente cubierta, detectar caminos no probados y garantizar un comportamiento robusto del sistema.
 
-Al inicio, usando únicamente **JaCoCo**, se obtuvo un **~46%** de cobertura.  
-Al incorporar **SonarQube**, la cobertura subió a **82%**.
+Al inicio, usando únicamente JaCoCo, se obtuvo un **~46%** de cobertura.  
+Al incorporar SonarQube, la cobertura subió a **82%**.
 
 Esto se puede deber a que SonarQube excluye automáticamente clases como `Main`, `Menu`, y posiblemente líneas no ejecutables, lo que mejora la cobertura efectiva.
 
