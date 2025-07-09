@@ -1,152 +1,142 @@
 # Test Driven Development Proof
 
-Este markdown deja evidencia del proceso TDD que fue utilizado para desarrollar la tarea 3 del ramo.
-Para cada el desarrollo de: 
+Este documento deja evidencia del proceso **TDD** utilizado para desarrollar la **Tarea 3** del curso, correspondiente a la implementación de un sistema de fidelidad gamificada.
 
-    - Gestion de clientes
-    - Gestion de compras
-    - Niveles de Fidelidad
-    - Menu CLI
+Para cada uno de los siguientes módulos:
 
-Primero se definirá la funcionalidad y luego el ciclo TDD de esta, para cada funcionalidad.
+- Gestión de clientes  
+- Gestión de compras  
+- Niveles de fidelidad  
+- Menú CLI  
 
-Primero comencemos con Gestion de clientes:
+Se documenta el ciclo **Red → Green → Refactor**, además de los resultados obtenidos en cobertura de pruebas y diagramas UML de apoyo.
 
-## Gestion de clientes
+---
 
-1. Agregar cliente
+## Gestión de Clientes
 
-    Atributos requeridos:
+### 1. Agregar cliente
 
-        id (String)
+**Atributos requeridos:**
 
-        nombre (String)
+- `id` (String)  
+- `nombre` (String)  
+- `correo` (String)
 
-        correo (String)
+**Valores iniciales por defecto:**
 
-    Atributos iniciales por defecto:
+- `puntos = 0`  
+- `nivel = Bronce`
 
-        puntos = 0
+**Validación:**  
+El correo debe contener el carácter `@`. En caso contrario, se lanza una excepción.
 
-        nivel = Bronce
-
-    Validación: El correo debe contener @, sino se lanza una excepción.
-
-Red
+**Red**  
 ![](fotos/gestion_clientes/agregar_usuario/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_clientes/agregar_usuario/green.png)
 
-Refactor
+**Refactor**  
 No es necesario.
 
 ---
 
-2. Listar clientes
+### 2. Listar clientes
 
-    Devuelve todos los clientes almacenados en memoria.
+Devuelve todos los clientes almacenados en memoria. Se espera que estén en una colección interna del repositorio o sistema.
 
-    Se espera que estén en una colección interna del repositorio o sistema.
-
-
-Red
+**Red**  
 ![](fotos/gestion_clientes/listar_clientes/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_clientes/listar_clientes/green.png)
 
-Refactor
-Futuro refactor podria mover la logica de almacenamiento a un repositorio de cliente
+**Refactor**  
+Futuro refactor podría mover la lógica de almacenamiento a un repositorio de cliente.
 
 ---
 
-3. Actualizar cliente
+### 3. Actualizar cliente
 
-    Permite modificar nombre y/o correo de un cliente existente por id.
+Permite modificar el nombre y/o correo de un cliente existente por ID.
 
-    Validación: Nuevamente, el correo debe ser válido.
+**Validación:** El correo debe ser válido nuevamente.
 
-Red
+**Red**  
 ![](fotos/gestion_clientes/actualizar_cliente/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_clientes/actualizar_cliente/green.png)
 
-Refactor
-Nada
+**Refactor**  
+Nada.
 
 ---
 
-4. Eliminar cliente
+### 4. Eliminar cliente
 
-    Elimina un cliente por id.
+Elimina un cliente por ID. Si el cliente no existe, puede lanzar una excepción o retornar un valor que lo indique.
 
-    Si el cliente no existe, puede lanzar una excepción o retornar un valor que lo indique.
-
-Red
+**Red**  
 ![](fotos/gestion_clientes/eliminar_cliente/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_clientes/eliminar_cliente/green.png)
 
-Refactor
+**Refactor**  
 Nada.
 
 ---
 
-5. (Implícito) Obtener cliente por ID
+### 5. Obtener cliente por ID (implícito)
 
-    Aunque no se menciona directamente, es necesario para actualizar, eliminar o registrar compras.
+Aunque no se menciona directamente, es necesario para actualizar, eliminar o registrar compras.
 
-Red
+**Red**  
 ![](fotos/gestion_clientes/buscar_clienteid/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_clientes/buscar_clienteid/green.png)
 
-Refactor
+**Refactor**  
 Nada.
 
 ---
 
-Perfecto, ya acabamos con la gestion de los clientes, ahora continuemos con la gestion de compras, pero antes de esto, haremos un pequeño refactor para mover el almacenamiento a ClienteRepository
+**Refactor general:**  
+Se realiza un refactor para mover la lógica de almacenamiento a `ClienteRepository`.
 
 ![](fotos/gestion_clientes/refactor.png)
 
+---
 
-Ahora si, continuemos con la gestion de compras.
+## Gestión de Compras
 
-## Gestion de compras
+### 1. Registrar una compra con puntos base
 
-Requisitos:
+**Atributos:**
 
-1. Registrar una compra con puntos base
+- `idCompra`: identificador único de la compra  
+- `idCliente`: ID del cliente asociado  
+- `monto`: monto total de la compra  
+- `fecha`: fecha de la compra  
 
-| Atributo    | Detalles                            |
-| ----------- | ----------------------------------- |
-| `idCompra`  | Identificador único de la compra    |
-| `idCliente` | ID del cliente asociado a la compra |
-| `monto`     | Monto total de la compra            |
-| `fecha`     | Fecha de la compra                  |
+**Regla de puntos:**  
+Cada $100 genera 1 punto (redondeo hacia abajo).
 
-Regla base:
-    Cada $100 genera 1 punto
-    → Se usa redondeo hacia abajo
-
-Red
+**Red**  
 ![](fotos/gestion_compras/registrar_compra/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_compras/registrar_compra/green.png)
 
-Refactor
-Pronto cambiaremos la logica de almacenamiento a ComprasRepository.
-
+**Refactor**  
+Se planifica mover la lógica de almacenamiento a `CompraRepository`.
 
 ---
 
-2. Aplicar multiplicador por nivel
+### 2. Aplicar multiplicador por nivel
 
 | Nivel   | Multiplicador |
 | ------- | ------------- |
@@ -155,40 +145,35 @@ Pronto cambiaremos la logica de almacenamiento a ComprasRepository.
 | Oro     | ×1.5          |
 | Platino | ×2            |
 
-
-Se aplica después de calcular los puntos base.
-
-
-
-Red
+**Red**  
 ![](fotos/gestion_compras/aplicar_multo/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_compras/aplicar_multo/green.png)
 
-Refactor
-Implementaremos el repositorio de las compras
+**Refactor**  
+Se implementa el repositorio de compras.  
 ![](fotos/gestion_compras/aplicar_multo/refac.png) 
 
 ---
 
-3. Bono por compras múltiples en el mismo día
+### 3. Bono por compras múltiples en el mismo día
 
-    Si un cliente realiza 3 compras el mismo día, recibe un bono adicional de +10 puntos.
-    Esta bonificación se reinicia cada día.
+Si un cliente realiza **3 compras el mismo día**, recibe un bono adicional de **+10 puntos**.  
+Esta bonificación se reinicia cada día.
 
-Red
+**Red**  
 ![](fotos/gestion_compras/bono3compras/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_compras/bono3compras/green.png)
 
-Refactor
-
+**Refactor**  
+Nada.
 
 ---
 
-4. Actualización del nivel de fidelidad
+### 4. Actualización del nivel de fidelidad
 
 | Nuevo nivel | Puntos acumulados |
 | ----------- | ----------------- |
@@ -197,48 +182,51 @@ Refactor
 | Oro         | 1500 – 2999       |
 | Platino     | 3000+             |
 
-
-Fue implementado con el multiplicador
+Este comportamiento fue implementado junto con el multiplicador.
 
 ---
 
-5. CRUD de compras
+### 5. CRUD de compras
 
-    Agregar compra
+- Agregar compra  
+- Listar compras  
+- Buscar compra por ID  
+- Eliminar compra (opcional, pero mencionado como "CRUD")
 
-    Listar compras
-
-    Buscar compra por ID
-
-    Eliminar compra (opcional, pero mencionado como "CRUD")
-
-Implementaremos todos los casos para cada metodo en una sola iteración
-
-
-Red
+**Red**  
 ![](fotos/gestion_compras/crud/red.png)
 
-Green
+**Green**  
 ![](fotos/gestion_compras/crud/green.png)
 
-Refactor
+**Refactor**  
 Nada.
 
+---
 
-Ahora podemos continuar con el menu CLI
+## Menú CLI
 
-## Menu CLI
+La interacción se implementó mediante un menú de texto simple por consola.
 
-## SonarQube coverage
+---
+
+## SonarQube Coverage
 
 ![](fotos/coverage.png)
 
+Al inicio, usando únicamente **JaCoCo**, se obtuvo un **~46%** de cobertura.  
+Al incorporar **SonarQube**, la cobertura subió a **82%**.
 
-## Diagramas
+Esto se puede deber a que SonarQube excluye automáticamente clases como `Main`, `Menu`, y posiblemente líneas no ejecutables, lo que mejora la cobertura efectiva.
 
-Diagrama de clases java
+> El 82% de cobertura se considera bueno, aunque no se probaron explícitamente algunos `setters` ni todos los cambios de nivel posibles.
+
+---
+
+## Diagramas UML
+
+### Diagrama de Clases (Java)
 ![](fotos/diagramaclases.png)
 
-Diagrama de secuencia para una compra
+### Diagrama de Secuencia (Registrar Compra)
 ![](fotos/diagramasecuencia.png)
-
