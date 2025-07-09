@@ -214,12 +214,17 @@ La interacción se implementó mediante un menú de texto simple por consola.
 
 ![](fotos/coverage.png)
 
+![](fotos/uncovered.png)
+
+He medido cobertura estructural del código (líneas, instrucciones y ramas) mediante JaCoCo para instrumentación, y SonarQube para análisis avanzado y depuración de cobertura irrelevante. Esto permitió validar rigurosamente la aplicación del ciclo TDD y mejorar la calidad del producto entregado.
+
 Al inicio, usando únicamente **JaCoCo**, se obtuvo un **~46%** de cobertura.  
 Al incorporar **SonarQube**, la cobertura subió a **82%**.
 
 Esto se puede deber a que SonarQube excluye automáticamente clases como `Main`, `Menu`, y posiblemente líneas no ejecutables, lo que mejora la cobertura efectiva.
 
 > El 82% de cobertura se considera bueno, aunque no se probaron explícitamente algunos `setters` ni todos los cambios de nivel posibles.
+
 
 ---
 
